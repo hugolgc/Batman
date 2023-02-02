@@ -34,4 +34,23 @@ class MovieController extends WebController
     $comments = $this->commentModel->getByMovie($id);
     return Template::render("views/global/home.php", array("movie" => $movie, "actors" => $actors, "comments" => $comments));
   }
+
+  function addComment($id = null): string
+  {
+    $id = $_GET['id'] ?? $id;
+    if ($id == null) return $this->show();
+    $comment = $_POST['comment'] ?? '';
+    $name = $_POST['name'] ?? '';
+    $date = date("Y-m-d H:i:s");
+    $this->commentModel->addComment($id, $comment, $name, $date);
+    return $this->show($id);
+  }
+
+  function deleteComment($id = null): string
+  {
+    $id = $_GET['id'] ?? $id;
+    if ($id == null) return $this->show();
+    $this->commentModel->deleteComment($id);
+    return $this->show();
+  }
 }
