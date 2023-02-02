@@ -19,10 +19,10 @@ class GalleryController extends WebController
     $this->galleryModel = new GalleryModel();
   }
 
-  function show(): string
+  function index(): string
   {
 
-    $images = $this->galleryModel->getAll();
-    return Template::render("views/global/gallery.php", array("images" => $images));
+    $pictures = $this->galleryModel->getAll();
+    return Template::render("views/global/pictures.php", array("pictures" => $pictures));
   }
 }

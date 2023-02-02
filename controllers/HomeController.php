@@ -6,7 +6,7 @@ use controllers\base\WebController;
 use models\MoviesModel;
 use utils\Template;
 
-class MoviesController extends WebController
+class HomeController extends WebController
 {
 
   public $moviesModel;

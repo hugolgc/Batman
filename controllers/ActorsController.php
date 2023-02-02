@@ -16,11 +16,8 @@ class ActorsController extends WebController
     $this->actorsModel = new ActorsModel();
   }
 
-
-
-  function show(): string
+  function index(): string
   {
-
     $actors = $this->actorsModel->getAllWithMovies();
     $actorsWithMovies = [];
     foreach ($actors as $actor) {
@@ -30,7 +27,7 @@ class ActorsController extends WebController
     foreach ($actors as $actor) {
       $actorsWithMovies[$actor->name]->movies[] = $actor->title;
     }
-    return Template::render("views/global/gallery.php", array("images" => $actorsWithMovies));
+    return Template::render("views/global/actors.php", array("actors" => $actorsWithMovies));
   }
 
   function addActor(): string
@@ -38,14 +35,14 @@ class ActorsController extends WebController
     $name = $_POST['name'] ?? '';
     $image = $_POST['image'] ?? '';
     $this->actorsModel->addActor($name, $image);
-    return $this->show();
+    return $this->index();
   }
 
   function deleteActor($id = null): string
   {
     $id = $_GET['id'] ?? $id;
-    if ($id == null) return $this->show();
+    if ($id == null) return $this->index();
     $this->actorsModel->deleteActor($id);
-    return $this->show();
+    return $this->index();
   }
 }

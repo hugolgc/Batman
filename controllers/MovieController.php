@@ -10,7 +10,6 @@ use utils\Template;
 
 class MovieController extends WebController
 {
-
   public $moviesModel;
   public $actorsModel;
   public $commentModel;
@@ -22,7 +21,11 @@ class MovieController extends WebController
     $this->commentModel = new CommentsModel();
   }
 
-
+  function index(): string
+  {
+    $movies = $this->moviesModel->getAll();
+    return Template::render("views/global/movies.php", array("movies" => $movies));
+  }
 
   function show($id = 1): string
   {
