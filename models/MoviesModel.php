@@ -11,14 +11,20 @@ class MoviesModel extends SQL
     parent::__construct('movies', 'id');
   }
 
-  /**
-   * Méthode d'exemple permettant l'accès aux données avec une
-   * requête préparée.
-   */
-  // public function getSampleData(string $filterEl): \stdClass
-  // {
-  //   $stmt = $this->getPdo()->prepare("SELECT * from `movies` WHERE col = ?");
-  //   $stmt->execute([$filterEl]);
-  //   return $stmt->fetch(\PDO::FETCH_OBJ);
-  // }
+  public function editMovie($id, $title, $date, $poster, $banner, $tailer, $synopsis, $story, $note, $budget, $recipe, $time)
+  {
+    $this->updateOne($id, array(
+      'title' => $title,
+      'date' => $date,
+      'poster' => $poster,
+      'banner' => $banner,
+      'tailer' => $tailer,
+      'synopsis' => $synopsis,
+      'story' => $story,
+      'note' => $note,
+      'budget' => $budget,
+      'recipe' => $recipe,
+      'time' => $time
+    ));
+  }
 }

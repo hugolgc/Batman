@@ -17,7 +17,7 @@ class ActorsModel extends SQL
    */
   public function getByMovie(int $id): array|null
   {
-    $stmt = $this->getPdo()->prepare("SELECT * FROM actors,actor_movie WHERE actor_movie.actor_id = actors.id and actor_movie.movie_id=:id");
+    $stmt = $this->getPdo()->prepare("SELECT actors.name, actors.image, actor_movie.name as role FROM actors,actor_movie WHERE actor_movie.actor_id = actors.id and actor_movie.movie_id=:id");
     $stmt->execute(["id" => $id]);
     return $stmt->fetchAll(\PDO::FETCH_OBJ);
   }

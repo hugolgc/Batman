@@ -374,6 +374,20 @@ header .button {
   background: #1e1e1e;
   border-radius: 8px;
 }
+
+header .container-button {
+  display: flex;
+  gap: 16px;
+}
+
+header .icon{
+  padding: 8px 12px;
+  margin-right: 10px;
+  border-radius: 8px;
+  color:white;
+  background: #1e1e1e;
+}
+
 @media (max-width: 768px) {
   header ul {
     position: fixed;
@@ -499,3 +513,66 @@ h1 {
   white-space: nowrap;
   border-width: 0;
 }/*# sourceMappingURL=main.css.map */
+
+
+.form form {
+  width:100%;
+  padding: 30px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+ }
+ .form #container h1{
+  width: 38%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+ }
+ 
+ /* Full-width inputs */
+ input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(80, 80, 80);
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+ }
+ 
+ /* Set a style for all buttons */
+ .form input[type=submit] {
+  background-color: #53af57;
+  color: rgb(56, 56, 56);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+ }
+ .form input[type=submit]:hover {
+  background-color: rgb(68, 68, 68);
+  color: #53af57;
+  border: 1px solid #53af57;
+ }
+
+ .button-login {
+  background-color: #53af57;
+  color: rgb(56, 56, 56);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+ }
+
+ .form .semi-button  {
+  width:45% !important
+ }
+
+ .form .icon {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border-radius: 8px;
+  color:white;
+  background: #1e1e1e;
+ }

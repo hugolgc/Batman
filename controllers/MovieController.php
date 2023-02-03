@@ -56,4 +56,32 @@ class MovieController extends WebController
     $this->commentModel->deleteComment($id);
     return $this->show();
   }
+
+  function editMovie($id = null): string
+  {
+    $id = $_GET['id'] ?? $id;
+    if ($id == null) return $this->redirect('/');
+    if (isset($_POST['title']) && isset($_POST['banner']) && isset($_POST['tailer'])) {
+
+      $title = $_POST['title'] ?? '';
+      $date = $_POST['date'] ?? '';
+      $poster = $_POST['poster'] ?? '';
+      $banner = $_POST['banner'] ?? '';
+      $tailer = $_POST['tailer'] ?? '';
+      $synopsis = $_POST['synopsis'] ?? '';
+      $story = $_POST['story'] ?? '';
+      $note = $_POST['note'] ?? '';
+      $budget = $_POST['budget'] ?? '';
+      $recipe = $_POST['recipe'] ?? '';
+      $time = $_POST['time'] ?? '';
+
+
+      $this->moviesModel->editMovie($id, $title, $date, $poster, $banner, $tailer,  $synopsis, $story, $note, $budget, $recipe, $time);
+      return $this->redirect('/editMovie');
+      return $this->redirect('/editMovie/' . $id);
+    }
+    $actors = $this->actorsModel->getByMovie($id);
+    $movie = $this->moviesModel->getOne($id);
+    return Template::render("views/global/editMovie.php", array("movie" => $movie, "actors" => $actors));
+  }
 }
