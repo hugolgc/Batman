@@ -23,8 +23,8 @@
       <li>Durée: <?= $movie->time ?>min</li>
       <!-- <li><?= $movie->genres ?></li> -->
     </ul>
-    <h3 class="pb-16">Synopsis</h3>
-    <p class="story pb-64"><?= $movie->synopsis ?></p>
+    <!-- <h3 class="pb-16">Synopsis</h3>
+    <p class="story pb-64"><?= $movie->synopsis ?></p> -->
 
     <h3 class="pb-16">Résumé complet</h3>
 
