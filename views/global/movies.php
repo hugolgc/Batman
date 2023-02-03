@@ -5,9 +5,11 @@
 
       <?php foreach ($movies as $movie) : ?>
         <li>
-          <img src="<?= $movie->poster ?>" alt="<?= $movie->title ?>" />
-          <h2><?= $movie->title ?></h2>
-          <p>Sorti le <?= implode('/', array_reverse(explode("-", $movie->date))) ?>, <?= $movie->synopsis ?></p>
+          <a href="/movies/<?= $movie->id ?> ">
+            <img src="<?= $movie->poster ?>" alt="<?= $movie->title ?>" />
+            <h2><?= $movie->title ?></h2>
+            <p>Sorti le <?= implode('/', array_reverse(explode("-", $movie->date))) ?>, <?= $movie->synopsis ?></p>
+          </a>
         </li>
       <?php endforeach; ?>
 
