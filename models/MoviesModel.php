@@ -27,4 +27,11 @@ class MoviesModel extends SQL
       'time' => $time
     ));
   }
+
+  public function getImages($id)
+  {
+    $stmt = $this->getPdo()->prepare("SELECT * FROM images WHERE movie_id=:id");
+    $stmt->execute(["id" => $id]);
+    return $stmt->fetchAll(\PDO::FETCH_OBJ);
+  }
 }

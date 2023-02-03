@@ -34,7 +34,8 @@ class MovieController extends WebController
     $movie = $this->moviesModel->getOne($id);
     $actors = $this->actorsModel->getByMovie($id);
     $comments = $this->commentModel->getByMovie($id);
-    return Template::render("views/global/movie.php", array("movie" => $movie, "actors" => $actors, "comments" => $comments));
+    $images =  $this->moviesModel->getImages($id);
+    return Template::render("views/global/movie.php", array("movie" => $movie, "actors" => $actors, "comments" => $comments, "images" => $images));
   }
 
   function adminIndex(): string
@@ -63,11 +64,11 @@ class MovieController extends WebController
   {
     $id = $_GET['id'] ?? $id;
     if ($id == null) return $this->show();
-    $comment = $_POST['comment'] ?? '';
+    $comment = $_POST['content'] ?? '';
     $name = $_POST['name'] ?? '';
     $date = date("Y-m-d H:i:s");
     $this->commentModel->addComment($id, $comment, $name, $date);
-    return $this->show($id);
+    return $this->redirect('/movies/' . $id);
   }
 
   function deleteComment($id = null): string

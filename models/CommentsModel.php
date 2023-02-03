@@ -23,7 +23,7 @@ class CommentsModel extends SQL
     return $stmt->fetchAll(\PDO::FETCH_OBJ);
   }
 
-  public function addComment(int $id, string $comment, string $name, string $date): void
+  public function addComment(string $id, string $comment, string $name, string $date): void
   {
     $stmt = $this->getPdo()->prepare("INSERT INTO comments (movie_id, content, name, date) VALUES (:id, :comment, :name, :date)");
     $stmt->execute(["id" => $id, "comment" => $comment, "name" => $name, "date" => $date]);

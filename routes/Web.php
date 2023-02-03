@@ -25,6 +25,7 @@ class Web
     Route::Add('/', [$main, 'home']);
     Route::Add('/movies', [$movieController, 'index']);
     Route::Add('/movies/{id}', [$movieController, 'show']);
+    Route::Add('/addComment/{id}', [$movieController, 'addComment']);
     Route::Add('/actors', [$actorController, 'index']);
     Route::Add('/pictures', [$galleryController, 'index']);
     Route::Add('/login', [$loginController, 'index']);
