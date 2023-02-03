@@ -15,18 +15,18 @@
   }
 </style>
 <section class="section">
-  <h1 class="title"><?= $movie->name ?></h1>
-  <form action="/admin/actors/edit/<?= $movie->id ?>" method="post">
+  <h1 class="title"><?= $actor->name ?></h1>
+  <form action="/admin/actors/edit/<?= $actor->id ?>" method="post">
     <div class="field">
       <label class="label">Nom</label>
       <div class="control">
-        <input class="input" type="text" name="name" value="<?= $movie->name ?>" required />
+        <input class="input" type="text" name="name" value="<?= $actor->name ?>" required />
       </div>
     </div>
     <div class="field">
       <label class="label">Image</label>
       <div class="control">
-        <input class="input" type="text" name="image" value="<?= $movie->image ?>" required />
+        <input class="input" type="text" name="image" value="<?= $actor->image ?>" required />
       </div>
     </div>
     <div class="field is-grouped">
