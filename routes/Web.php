@@ -2,7 +2,7 @@
 
 namespace routes;
 
-use controllers\ActorsController;
+use controllers\ActorController;
 use controllers\EditController;
 use controllers\GalleryController;
 use controllers\LoginController;
@@ -10,7 +10,6 @@ use controllers\MovieController;
 use controllers\SampleWebController;
 use routes\base\Route;
 use utils\SessionHelpers;
-use utils\Template;
 
 class Web
 {
@@ -18,7 +17,7 @@ class Web
   {
     $main = new SampleWebController();
     $movieController = new MovieController();
-    $actorController = new ActorsController();
+    $actorController = new ActorController();
     $galleryController = new GalleryController();
     $loginController = new LoginController();
     $editController = new EditController();
@@ -31,14 +30,18 @@ class Web
     Route::Add('/login', [$loginController, 'index']);
     Route::Add('/logout', [$loginController, 'logout']);
     Route::Add('/register', [$loginController, 'register']);
-    if (SessionHelpers::isLogin()) {
-      Route::Add('/editMovie/{id}', [$movieController, 'editMovie']);
-      Route::Add('/editMovie', [$editController, 'index']);
-    }
 
-    //        Exemple de limitation d'accès à une page en fonction de la SESSION.
-    //        if (SessionHelpers::isLogin()) {
-    //            Route::Add('/logout', [$main, 'home']);
-    //        }
+    if (SessionHelpers::isLogin()) {
+      Route::Add('/editMovie', [$editController, 'index']);
+      Route::Add('/editMovie/{id}', [$movieController, 'editMovie']);
+
+      Route::Add('/admin/movies', [$movieController, 'adminIndex']);
+      Route::Add('/admin/movies/edit/{id}', [$movieController, 'adminEdit']);
+      Route::Add('/admin/movies/delete/{id}', [$movieController, 'adminDelete']);
+
+      Route::Add('/admin/actors', [$actorController, 'adminIndex']);
+      Route::Add('/admin/actors/edit/{id}', [$actorController, 'adminEdit']);
+      Route::Add('/admin/actors/delete/{id}', [$actorController, 'adminDelete']);
+    }
   }
 }

@@ -6,7 +6,7 @@ use controllers\base\WebController;
 use models\ActorsModel;
 use utils\Template;
 
-class ActorsController extends WebController
+class ActorController extends WebController
 {
 
   public $actorsModel;
@@ -28,6 +28,28 @@ class ActorsController extends WebController
       $actorsWithMovies[$actor->name]->movies[] = $actor->title;
     }
     return Template::render("views/global/actors.php", array("actors" => $actorsWithMovies));
+  }
+
+  function adminIndex(): string
+  {
+    $actors = $this->actorsModel->getAll();
+    return Template::render('views/global/admin/actors.php', ['actors' => $actors]);
+  }
+
+  function adminEdit($id = 0): string
+  {
+    if (!empty($_POST)) {
+      $this->actorsModel->updateOne($id, $_POST);
+    }
+
+    $actor = $this->actorsModel->getOne($id);
+    return Template::render('views/global/admin/actors-edit.php', ['actor' => $actor]);
+  }
+
+  function adminDelete($id = 0): void
+  {
+    $this->actorsModel->deleteOne($id);
+    header('Location: /admin/actors');
   }
 
   function addActor(): string

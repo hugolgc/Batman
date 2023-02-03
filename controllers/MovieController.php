@@ -31,11 +31,32 @@ class MovieController extends WebController
   {
 
     $id = $_GET['id'] ?? $id;
-
     $movie = $this->moviesModel->getOne($id);
     $actors = $this->actorsModel->getByMovie($id);
     $comments = $this->commentModel->getByMovie($id);
-    return Template::render("views/global/home.php", array("movie" => $movie, "actors" => $actors, "comments" => $comments));
+    return Template::render("views/global/movie.php", array("movie" => $movie, "actors" => $actors, "comments" => $comments));
+  }
+
+  function adminIndex(): string
+  {
+    $movies = $this->moviesModel->getAll();
+    return Template::render('views/global/admin/movies.php', ['movies' => $movies]);
+  }
+
+  function adminEdit($id = 0): string
+  {
+    if (!empty($_POST)) {
+      $this->moviesModel->updateOne($id, $_POST);
+    }
+
+    $movie = $this->moviesModel->getOne($id);
+    return Template::render('views/global/admin/movies-edit.php', ['movie' => $movie]);
+  }
+
+  function adminDelete($id = 0): void
+  {
+    $this->moviesModel->deleteOne($id);
+    header('Location: /admin/movies');
   }
 
   function addComment($id = null): string

@@ -7,7 +7,7 @@
         <li>
           <img src="<?= $movie->poster ?>" alt="<?= $movie->title ?>" />
           <h2><?= $movie->title ?></h2>
-          <p><?= $movie->synopsis ?></p>
+          <p>Sorti le <?= implode('/', array_reverse(explode("-", $movie->date))) ?>, <?= $movie->synopsis ?></p>
         </li>
       <?php endforeach; ?>
 
